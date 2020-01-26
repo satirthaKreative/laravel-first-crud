@@ -6,6 +6,7 @@
   <div class="row">
   	<div class="col-sm-6 col-sm-offset-3">
   		<h2>Inline form</h2>
+  		<a href="{{ route('products.index') }}" class="btn btn-warning" style="    float: right;margin-top: -33px;">Back</a>
   		<p>Make the viewport larger than 768px wide to see that all of the form elements are inline, left aligned, and the labels are alongside.</p>
 
   		@if($errors->any())
@@ -32,7 +33,7 @@
   		@endif
 
 
-  		<form class="form" action="{{ route('products.store') }}" method="POST">
+  		<form class="form" action="{{ route('product.store') }}" method="POST">
   			@csrf
   		  <div class="form-group">
   		    <label for="email">Product Name:</label>

@@ -5,12 +5,19 @@
 <div class="container">
 	<div class="row">
 
-		<div class="col-sm-10 col-sm-offset-1">
+		<div class="col-sm-12">
 			<div class="">
 				<h2>Display Product Data Table</h2>
 				<a href="{{ route('products.create') }}" class="btn btn-success">Create New Product</a>
 			</div>
-			<table class="table table-responsive table-striped">
+			@if($message = Session::get('success'))
+
+				<div class="alert alert-success">
+					{{ $message }}
+				</div>
+
+			@endif
+			<table class="table table-responsive table-striped table-bordered">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -23,11 +30,20 @@
 				<tbody>
 					@foreach($products as $product)
 					<tr>
-						<td>1.</td>
+						<td>{{ ++$i }}</td>
 						<td>{{ $product->product_name }}</td>
 						<td>{{ $product->product_description }}</td>
-						<td>2.</td>
-						<td>3.</td>
+						<td></td>
+						<td >
+							<form action="{{ route('products.destroy',$product->id) }}" method="POST">
+								<a href="{{ route('products.edit',$product->id) }}" class="btn btn-info">Edit</a>
+
+								@csrf
+								@method('DELETE')
+
+								<button type="submit" class="btn btn-danger">Delete</button>
+							</form>
+						</td>
 					</tr>
 					@endforeach
 				</tbody>
